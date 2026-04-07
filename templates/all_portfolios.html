@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все портфолио</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form method="GET" style="max-width: 80%;">
+        <select class="form-select"
+                name="skill"
+                onchange="this.form.submit()">
+            <option value="">--- All skills ---</option>
+            {% for tech in tool_icons %}
+                <option value="{{ tech }}"
+                    {% if tech.lower() == current_skill %}selected{% endif %}>
+                    {{ tech }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+    <div class="all-portfolio-container">
+        <h1 class="all-title">Все портфолио</h1>
+        <div class="grid">
+            {% for portfolio in portfolios %}
+                <div class="card">
+                        <img src="{{url_for('static', filename=portfolio.avatar if portfolio.avatar else 'placeholder.png')}}" alt="User">
+                        <a href="{{url_for('view_portfolio', uuid=portfolio.uuid)}}">{{portfolio.name}}</a>
+                        <p class="bio-preview">{{portfolio.bio}}</p>
+                        <div class="tool-list">
+                            {% for tech, icon in tool_icons.items() %}
+                                {% if tech.lower() in portfolio.skills %}
+                                    <span class="badge">{{ icon }}{{ tech }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('form') }}" class="button-secondary">Создать новое портфолио</a>
+    </div>
+</body>
+</html>

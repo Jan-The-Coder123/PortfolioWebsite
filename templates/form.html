@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание портфолио</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1 class="form-title">Создай своё портфолио</h1>
+    <!-- здесь будет форма -->
+    <form
+        action="/generate" method="POST" enctype="multipart/form-data">
+    <!-- здесь будут поля -->
+        <label>Name: </label>
+        <input type="text" name="name" required>
+        <br>
+        <label>Bio: </label>
+        <textarea rows="7" cols="50" name="bio" required></textarea>
+        <br>
+        <label>Skills: </label>
+        <input type="text" name="skills" required>
+        <br>
+        <label>GitHub Username: </label>
+        <input type="text" name="github" required>
+        <br>
+        <label>Telegram: </label>
+        <input type="text" name="telegram" required>
+        <br>
+        <label>Avatar: </label>
+        <input type="file" name="avatar" accept="image/*">
+        <br>
+        <button type="submit">Создать</button>
+    </form>
+</body>
+</html>
+
